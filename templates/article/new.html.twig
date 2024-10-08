@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Article{% endblock %}
+
+
+{% block body %} 
+<script>
+    tinymce.init({
+        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
+        menubar: false, // Désactive la barre de menus
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
+    });
+</script>
+
+ <main class = ''>
+        
+    <h2 class="text-center p-8 font-semibold text-3xl">Nouveau texte</h2>
+
+        
+    <div class=' m-6'>
+    
+        {{ include('article/_form.html.twig') }}
+    </div>
+    
+
+
+    <a href="{{ path('app_article_index') }}">back to list</a>
+    
+</main>
+
+{% endblock %}

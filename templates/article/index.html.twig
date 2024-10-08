@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+    <header class="flex flex-nowrap ">
+        <div class="w-3/6">
+            <img class="" src="images/logo/logogr-removebg.png" alt="logo de Thot">
+        </div>
+        <div class="w-3/6">
+                
+
+                
+                
+            <img class="" src="images/image/livrebibli.jpg" alt="image d'un livre au milieu d'une bibliotheque">
+        </div>
+    </header>
+   
+   
+    <main class=' w-full'>
+        <h1 class='text-4xl mx-auto'>Le Coin Lecture</h1>
+
+            {% include 'includes/recherche.html.twig' %}
+
+        <section id="result" >
+            {% for article in articles %}
+                {% if article.statutArticle %}
+                    <div class='shadow-xl m-6'>
+                        <h2>{{ article.titreArticle }}</h2>
+                        <article>{{ article.texteArticle[:200]|raw }}</article>
+                        <p>{{ article.dateArticle ? article.dateArticle|date('d F Y') : '' }}</p>
+                        <div>
+                            <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %} 
+        </section>
+  
+
+    </main>
+
+
+{% endblock %}

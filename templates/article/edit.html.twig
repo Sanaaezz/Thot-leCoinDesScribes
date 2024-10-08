@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article{% endblock %}
+
+{% block body %}
+<script>
+    tinymce.init({
+        selector: 'textarea', // Sélectionne les éléments <textarea> où TinyMCE doit s'appliquer
+        menubar: false, // Désactive la barre de menus
+        plugins: 'advlist autolink lists link image charmap print preview anchor',
+        toolbar: 'undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat',
+        content_css: '//www.tiny.cloud/css/codepen.min.css', // Optionnel : fichier CSS pour styliser le contenu
+    });
+</script>
+    <h1>Edit Article</h1>
+  
+        {# <label class="relative inline-flex cursor-pointer items-center">
+            <input  id="switch" type="checkbox" class="peer sr-only" {{ article.statutArticle ? 'Yes' : 'No' }} />
+            <label for="switch" class="hidden"></label>
+            <div class="peer h-4 w-11 rounded border bg-slate-200 after:absolute after:-top-1 after:left-0 after:h-6 after:w-6 after:rounded-md after:border after:border-gray-300 after:bg-white after:transition-all after:content-[''] peer-checked:bg-green-300 peer-checked:after:translate-x-full peer-focus:ring-green-300"></div>
+        </label> #}
+
+        {% if ('ROLE_ADMIN') %}
+        {{ include('article/_form.html.twig', {'button_label': 'Update'}) }}
+        {% endif %}
+
+
+    <a href="{{ path('app_article_index') }}">back to list</a>
+
+    {{ include('article/_delete_form.html.twig') }}
+{% endblock %}
